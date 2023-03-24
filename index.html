@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Jenny's Health Status</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                font-size: 2rem;
+                text-align: center;
+            }
+            
+            @media (max-width: 600px) {
+                body {
+                    font-size: 1.5rem;
+                }
+            }
+            
+            .center {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="center">
+            <p>
+                <span id="status">
+                    No, Jenny is not sick today
+                </span>
+            </p>
+        </div>
+        
+        <script>
+            // Assuming we have a variable called "is_sick" which is either true or false
+            var is_sick = true;
+            
+            var statusEl = document.getElementById("status");
+            
+            if (is_sick) {
+                statusEl.innerHTML = "Yes, Jenny is sick today";
+            } else {
+                statusEl.innerHTML = "No, Jenny is not sick today";
+            }
+        </script>
+    </body>
+    </html>
