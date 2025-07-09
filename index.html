@@ -1,53 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Jenny's Health Status</title>
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                font-size: 2rem;
-                text-align: center;
-            }
-            
-            @media (max-width: 600px) {
-                body {
-                    font-size: 1.5rem;
-                }
-            }
-            
-            .center {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
-        </style>
-    </head>
-    <body>
-        <div class="center">
-            <p>
-                <span id="status">
-                    No, Jenny is not sick today
-                </span>
-            </p>
-        </div>
-        
-        <script>
-            // Assuming we have a variable called "is_sick" which is either true or false
-            var is_sick = false;
-            
-            var statusEl = document.getElementById("status");
-            
-            if (is_sick) {
-                statusEl.innerHTML = "Yes, Jenny is sick today";
-            } else {
-                statusEl.innerHTML = "No, Jenny is not sick today";
-            }
-        </script>
-    </body>
-    </html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Is Jenny Sick?</title>
+
+  <!-- Softer Google font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ---------- CSS (inline) ---------- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #f8fafc;        /* gentle off-white */
+      color: #111;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wrapper {
+      text-align: center;
+      padding: 2.5rem 3rem;
+      border-radius: 1rem;
+      background: #fff;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    }
+
+    .title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+
+    .status {
+      font-size: 4rem;
+      font-weight: 700;
+      padding: 0.25em 0.7em;
+      border-radius: 0.5em;
+      display: inline-block;
+    }
+
+    .status.yes { background: #fee2e2; color: #b91c1c; }   /* red */
+    .status.no  { background: #dcfce7; color: #15803d; }   /* green */
+
+    .timestamp { margin-top: 1.2rem; color: #555; }
+  </style>
+</head>
+<body>
+  <main class="wrapper">
+    <h1 class="title">Is Jenny Sick?</h1>
+
+    <!-- Flip the word + class when her status changes -->
+    <p id="status" class="status no">No</p>
+
+    <p class="timestamp">
+      <small>Last updated <span id="last-updated"></span></small>
+    </p>
+  </main>
+
+  <script>
+    /* ---------- JavaScript (inline) ----------
+       Change LAST_UPDATED when you flip “Yes/No”.
+       If you forget, we fall back to document.lastModified.
+    */
+    (() => {
+      const LAST_UPDATED = "Jul 8 2025 21:45 CDT";   // <-- edit this each time
+
+      const fallback = new Date(document.lastModified).toLocaleString("en-US", {
+        dateStyle: "medium",
+        timeStyle: "short"
+      });
+
+      document.getElementById("last-updated").textContent = LAST_UPDATED || fallback;
+    })();
+  </script>
+</body>
+</html>
